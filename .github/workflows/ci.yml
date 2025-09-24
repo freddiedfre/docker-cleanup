@@ -30,16 +30,17 @@ jobs:
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        run: |
-          choco install shellcheck -y
-          choco install bats --version=1.11.0 -y
-        shell: powershell
-
-      - name: Set up Bash (Windows)
-        if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
-          install: bash coreutils
+          install: >-
+            bash
+            coreutils
+            make
+            unzip
+            git
+            mingw-w64-x86_64-shellcheck
+            mingw-w64-x86_64-bats
+          update: true
 
       - name: Run lint
         run: bash ci/lint.sh
