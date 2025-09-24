@@ -20,9 +20,14 @@ Supports rootless Docker, rootful Docker Engine, and Docker Desktop.
 
 Download and install the latest release without cloning:
 
+### Install via curl
+
 ```bash
-curl -L https://github.com/freddiedfre/docker-cleanup/releases/latest/download/docker-cleanup-$(uname -s | tr '[:upper:]' '[:lower:]')-amd64.tar.gz \
-  | sudo tar -xz -C /usr/local/bin
+VERSION=v0.4.0
+OS=$(uname | tr '[:upper:]' '[:lower:]')
+curl -L https://github.com/myorg/docker-cleanup/releases/latest/download/docker-cleanup-${VERSION}-${OS}-amd64.tar.gz | tar xz
+sudo mv docker-cleanup /usr/local/bin/
+
 ```
 
 ### ⚡ Usage
@@ -55,8 +60,8 @@ make install
 To cut a new release:
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v0.4.0
+git push origin v0.4.0
 ```
 
 GitHub Actions will build tarballs and publish them automatically.
