@@ -6,23 +6,18 @@ OUTPUT_DIR="build/${VERSION}"
 BIN_NAME="docker-cleanup"
 
 mkdir -p "$OUTPUT_DIR"
+mkdir -p dist
 
 echo ">> Preparing bin/${BIN_NAME}"
 cp scripts/docker-cleanup.sh "bin/${BIN_NAME}"
 chmod +x "bin/${BIN_NAME}"
 
-echo ">> Creating tarballs..."
-mkdir -p dist
-
-# Versioned tarballs
-tar -czf "dist/${BIN_NAME}-${VERSION}-linux-amd64.tar.gz" -C bin "$BIN_NAME"
-tar -czf "dist/${BIN_NAME}-${VERSION}-darwin-amd64.tar.gz" -C bin "$BIN_NAME"
-tar -czf "dist/${BIN_NAME}-${VERSION}-windows-amd64.tar.gz" -C bin "$BIN_NAME"
-
-# Non-versioned tarballs (for curl latest download)
-tar -czf "dist/${BIN_NAME}-linux-amd64.tar.gz" -C bin "$BIN_NAME"
-tar -czf "dist/${BIN_NAME}-darwin-amd64.tar.gz" -C bin "$BIN_NAME"
-tar -czf "dist/${BIN_NAME}-windows-amd64.tar.gz" -C bin "$BIN_NAME"
+# Create tarballs for Linux/macOS/Windows
+for OS_NAME in linux darwin windows; do
+  TAR_NAME="dist/${BIN_NAME}-${VERSION}-${OS_NAME}-amd64.tar.gz"
+  echo ">> Creating tarball: $TAR_NAME"
+  tar -czf "$TAR_NAME" -C bin "$BIN_NAME"
+done
 
 echo ">> Build complete. Artifacts in dist/"
 ls -lh dist/
