@@ -25,7 +25,7 @@ Download and install the latest release without cloning:
 ```bash
 VERSION=v0.4.0
 OS=$(uname | tr '[:upper:]' '[:lower:]')
-curl -L https://github.com/myorg/docker-cleanup/releases/latest/download/docker-cleanup-${VERSION}-${OS}-amd64.tar.gz | tar xz
+curl -L https://github.com/freddiedfre/docker-cleanup/releases/latest/download/docker-cleanup-${VERSION}-${OS}-amd64.tar.gz | tar xz
 sudo mv docker-cleanup /usr/local/bin/
 
 ```
