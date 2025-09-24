@@ -13,9 +13,16 @@ chmod +x "bin/${BIN_NAME}"
 
 echo ">> Creating tarballs..."
 mkdir -p dist
+
+# Versioned tarballs
 tar -czf "dist/${BIN_NAME}-${VERSION}-linux-amd64.tar.gz" -C bin "$BIN_NAME"
 tar -czf "dist/${BIN_NAME}-${VERSION}-darwin-amd64.tar.gz" -C bin "$BIN_NAME"
 tar -czf "dist/${BIN_NAME}-${VERSION}-windows-amd64.tar.gz" -C bin "$BIN_NAME"
+
+# Non-versioned tarballs (for curl latest download)
+tar -czf "dist/${BIN_NAME}-linux-amd64.tar.gz" -C bin "$BIN_NAME"
+tar -czf "dist/${BIN_NAME}-darwin-amd64.tar.gz" -C bin "$BIN_NAME"
+tar -czf "dist/${BIN_NAME}-windows-amd64.tar.gz" -C bin "$BIN_NAME"
 
 echo ">> Build complete. Artifacts in dist/"
 ls -lh dist/
