@@ -9,12 +9,33 @@ jobs:
   lint-test:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Bash
+      - name: Install dependencies (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck bats
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install shellcheck bats-core
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          choco install shellcheck -y
+          choco install bats --version=1.11.0 -y
+        shell: powershell
+
+      - name: Set up Bash (Windows)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
