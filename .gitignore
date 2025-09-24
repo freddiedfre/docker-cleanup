@@ -1,0 +1,45 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editors/IDE
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Node/npm/yarn cache
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env/
+
+# Coverage & test outputs
+coverage/
+*.lcov
+.junit/
+*.tap
+*.bats-junit.xml
+
+# Build artifacts
+dist/
+build/
+*.tar.gz
+*.zip
+
+# Docker
+*.pid
+*.sock
+
+# Binaries/symlinks (bin/ should only track docker-cleanup stub)
+bin/*
+!bin/docker-cleanup

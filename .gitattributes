@@ -1,0 +1,16 @@
+# Ensure consistent line endings across OS
+* text=auto eol=lf
+
+# Scripts should be LF
+*.sh text eol=lf
+*.bats text eol=lf
+
+# Mark shell scripts as executable
+*.sh eol=lf text executable
+bin/docker-cleanup eol=lf text executable
+
+# Exclude from linguist stats (GitHub language stats)
+tests/* linguist-vendored
+ci/* linguist-vendored
+.github/* linguist-vendored
+.vscode/* linguist-vendored

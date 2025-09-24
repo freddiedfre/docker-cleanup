@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Development helper symlink
+exec "$(dirname "$0")/../scripts/docker-cleanup.sh" "$@"
